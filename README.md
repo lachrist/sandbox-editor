@@ -1,7 +1,7 @@
 # commonjs-editor
 
 Edit JS files within different environments into browsers.
-Usage [here](/demo), live demo [here](wesh).
+Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/87e65965/demo/index.html).
 
 ## `RawSandbox`
 
