@@ -4,7 +4,7 @@ module.exports = function () {
   return [
     "((() => {",
     "  "+this._sandbox.require,
-    "  "+this._sandbox.modules.includes("buffer")?"let Buffer = require(\"buffer\");":"",
+    "  "+(this._sandbox.modules.includes("buffer")?"let Buffer = require(\"buffer\");":""),
     "  let global = window;",
     "  return ((() => {",
     "    let module = {exports:{}};",

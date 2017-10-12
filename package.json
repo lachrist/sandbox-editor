@@ -1,7 +1,7 @@
 {
-  "name": "commonjs-editor",
+  "name": "sandbox-editor",
   "description": "Edit JS files within different environments into browsers",
-  "version": "0.0.7",
+  "version": "0.0.1",
   "author": {
     "name": "Laurent Christophe",
     "email": "lachrist@vub.ac.be"
