@@ -1,0 +1,25 @@
+{
+  "name": "commonjs-editor",
+  "description": "Edit JS files within different environments into browsers",
+  "version": "0.0.7",
+  "author": {
+    "name": "Laurent Christophe",
+    "email": "lachrist@vub.ac.be"
+  },
+  "repository": "lachrist/commonjs-editor",
+  "license": "MIT",
+  "main": "./main.js",
+  "bin": "./bin.js",
+  "keywords": [
+    "CommonJS",
+    "Sandbox",
+    "Editor",
+    "Ace",
+    "Cloud9"
+  ],
+  "dependencies": {
+    "brace": "^0.10.0",
+    "browserify": "^14.4.0",
+    "resolve": "^1.4.0"
+  }
+}

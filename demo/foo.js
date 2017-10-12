@@ -1,0 +1,10 @@
+console.log("foo");
+var Bar = require("./bar.js");
+var Qux = require("qux");
+exports.Bar = Bar;
+exports.Qux = Qux;
+exports.global = typeof global;
+exports.Buffer = typeof Buffer;
+exports.process = typeof process;
+exports.__dirname = __dirname;
+exports.__filename = __filename;
