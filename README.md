@@ -2,6 +2,13 @@
 
 Edit JS files within different environments into browsers.
 Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/fc2558e6/demo/index.html).
+In the BrowserifySandbox environment, the following nodejs variables are always available: `module`, `exports`, `require`, `__filename`, `__dirname`, `global`.
+`process` is never available (nowhere) but can be defined globally before evaluating the script.
+`Buffer` is not available (nowhere) only if `options.nobuffer` is truthy *and* `buffer` is not required in the top-level file.
+
+```
+sandbox-editor --path script.js [--basedir .] [--nobuffer] > sandbox.js
+```
 
 ## `RawSandbox`
 
@@ -30,8 +37,9 @@ Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-ed
       * `sandbox :: sandbox-editor.RawSandbox`
   * `sandbox = browserify(path, options, callback)`
     * `path :: string`
-    * `options :: browserify.Options`
-      * `raw :: boolean`
+    * `options :: object`
+      * `basedir :: string`
+      * `nobuffer :: boolean`
     * `callback(error, sandbox)`
       * `error :: Error`
       * `sandbox :: sandbox-editor.BrowserifySandbox`
