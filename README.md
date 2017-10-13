@@ -18,23 +18,23 @@ Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-ed
 * `modules :: [string]`
 * `require :: string`
 
-## `require("sandbox-editor/raw/sandbox")(path, options, callback)`
+## `Sandbox = require("sandbox-editor/sandbox");`
 
-* `path :: string`
-* `options :: object`
-  * `basedir :: string`
-* `callback(error, sandbox)`
-  * `error :: Error`
-  * `sandbox :: sandbox-editor.RawSandbox`
-
-## `require("sandbox-editor/browserify/sandbox")(path, options, callback)`
-
-* `path :: string`
-* `options :: browserify.Options`
-  * `raw :: boolean`
-* `callback(error, sandbox)`
-  * `error :: Error`
-  * `sandbox :: sandbox-editor.BrowserifySandbox`
+* `Sandbox :: object`
+  * `sandbox = raw(path, options, callback)`
+    * `path :: string`
+    * `options :: object`
+      * `basedir :: string`
+    * `callback(error, sandbox)`
+      * `error :: Error`
+      * `sandbox :: sandbox-editor.RawSandbox`
+  * `sandbox = browserify(path, options, callback)`
+    * `path :: string`
+    * `options :: browserify.Options`
+      * `raw :: boolean`
+    * `callback(error, sandbox)`
+      * `error :: Error`
+      * `sandbox :: sandbox-editor.BrowserifySandbox`
 
 ## `editor = require("sandbox-editor")(container, sandbox)`
 
