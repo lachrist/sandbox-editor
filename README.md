@@ -1,7 +1,7 @@
 # commonjs-editor
 
 Edit JS files within different environments into browsers.
-Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/fc2558e6/demo/index.html).
+Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/7179a926/demo/index.html).
 In the BrowserifySandbox environment, the following nodejs variables are always available: `module`, `exports`, `require`, `__filename`, `__dirname`, `global`.
 `process` is never available (nowhere) but can be defined globally before evaluating the script.
 `Buffer` is not available (nowhere) only if `options.nobuffer` is truthy *and* `buffer` is not required in the top-level file.
@@ -21,7 +21,6 @@ sandbox-editor --path script.js [--basedir .] [--nobuffer] > sandbox.js
 * `type :: string`
 * `path :: string`
 * `content :: string`
-* `raw :: boolean`
 * `modules :: [string]`
 * `require :: string`
 
