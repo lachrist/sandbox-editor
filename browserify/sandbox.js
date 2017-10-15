@@ -7,8 +7,9 @@ const Stream = require("stream");
 
 module.exports = (path, options, callback) => {
   options = options || {};
-  options.basedir = String(options.basedir) || Path.dirname(path);
-  options.nobuffer = Boolean(options.nobuffer) || false;
+  options.basedir = String(options.basedir || Path.dirname(path));
+  options.noprocess = Boolean(options.noprocess);
+  options.nobuffer = Boolean(options.nobuffer);
   const sandbox = {
     type: "browserify",
     path: "/"+Path.relative(options.basedir, path),
@@ -24,10 +25,26 @@ module.exports = (path, options, callback) => {
     //   }
     // }
     const browserify = Browserify({detectGlobals:false});
-    if (!options.nobuffer) {
-      browserify.require("buffer", {expose:"buffer"});
-      sandbox.modules.push("buffer");
-    }
+    const add = (module, expose) => {
+      browserify.require(module, {expose:expose});
+      sandbox.modules.push(expose);
+    };
+    ((() => {
+      const shim = (variable, expose) => {
+        const readable = new Stream.Readable({read:()=>{}});
+        readable.push("module.exports = "+variable+";");
+        readable.push(null);
+        if (!options["no"+expose])
+          add(expose, "_"+expose);
+        add(readable, expose);
+      };
+      shim("process", "process");
+      shim("Buffer", "buffer");
+    }) ());
+    // if (!options.nobuffer) {
+    //   browserify.require("buffer", {expose:"buffer"});
+    //   sandbox.modules.push("buffer");
+    // }
     browserify.transform((file) => {
       let content = "";
       const stream = new Stream.Transform({
@@ -55,10 +72,8 @@ module.exports = (path, options, callback) => {
       const expose = module[0] === "/" ? "/"+Path.relative(options.basedir, module) : module;
       if (module[0] !== "/" && !Resolve.isCore(module))
         module = Resolve.sync(module, {basedir:Path.dirname(path)});
-      if (sandbox.modules.indexOf(module) === -1) {
-        browserify.require(module, {expose:expose});
-        sandbox.modules.push(expose);
-      }
+      if (sandbox.modules.indexOf(module) === -1)
+        add(module, expose);
       return p1+"require("+JSON.stringify(expose)+")";
     });
     // const comments = ["Available nodejs variables: module, exports, require, global, __filename, __dirname"+(modules.includes("buffer")?", Buffer":"")]

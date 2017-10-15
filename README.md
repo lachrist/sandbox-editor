@@ -2,13 +2,18 @@
 
 Edit JS files within different environments into browsers.
 Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/7179a926/demo/index.html).
-In the BrowserifySandbox environment, the following nodejs variables are always available: `module`, `exports`, `require`, `__filename`, `__dirname`, `global`.
-`process` is never available (nowhere) but can be defined globally before evaluating the script.
-`Buffer` is not available (nowhere) only if `options.nobuffer` is truthy *and* `buffer` is not required in the top-level file.
 
 ```
-sandbox-editor --path script.js [--basedir .] [--nobuffer] > sandbox.js
+sandbox-editor --path script.js [--type raw|browserify] [--basedir .] [--nobuffer] [--noprocess] > sandbox.js
 ```
+
+In the BrowserifySandbox environment, the nodejs pseudo global variables are always available: `module`, `exports`, `require`, `__filename`, `__dirname`.
+`__filename` and `__dirname` are the (absolute) path of the current script relative to `options.basedir`.
+As for the nodejs genuine global variables, if they are not already defined they are declared as:
+* `global`: the global object.
+* `process`: an empty object if `options.noprocess` is truthy else [the browserify process shim](https://www.npmjs.com/package/process). 
+* `Buffer`: an empty object if `options.nobuffer` is truthy else [the browserify buffer shim](https://github.com/feross/buffer).
+Note that `require("process")` and `require("buffer")` are always available and consistent with their respective globally declared value.
 
 ## `RawSandbox`
 
@@ -38,6 +43,7 @@ sandbox-editor --path script.js [--basedir .] [--nobuffer] > sandbox.js
     * `path :: string`
     * `options :: object`
       * `basedir :: string`
+      * `noprocess :: boolean`
       * `nobuffer :: boolean`
     * `callback(error, sandbox)`
       * `error :: Error`

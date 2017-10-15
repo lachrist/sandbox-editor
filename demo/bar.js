@@ -1,6 +1,6 @@
 console.log("bar");
-var Qux = require("qux");
-exports.Buffer = typeof Buffer;
+exports.rBuffer = require("buffer");
+exports.rprocess = require("process");
 exports.__filename = __filename;
 exports.__dirname = __dirname;
-exports.Qux = Qux;
+exports.Qux = require("qux");
