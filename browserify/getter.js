@@ -1,17 +1,17 @@
 const Path = require("path");
 const def = (variable, expose, modules) => [ 
-  "if (typeof "+variable+" === \"undefined\")",
-  "  eval(\"var "+variable+" = "+(modules.includes("_"+expose)?"require('_"+expose+"')":"{}")+"\");",
-  "require(\""+expose+"\");"
-].join("");
+  "  if (typeof "+variable+" === \"undefined\")",
+  "    eval(\"var "+variable+" = "+(modules.includes("_"+expose)?"require('_"+expose+"')":"{}")+"\");",
+  "  require(\""+expose+"\");"
+].join("\n");
 module.exports = function () {
   return [
     "(function () {",
     "  if (typeof global === \"undefined\")",
-    "    eval(\"global = this\");",
-    "  "+this._sandbox.require,
-    "  "+def("process", "process", this._sandbox.modules),
-    "  "+def("Buffer", "buffer", this._sandbox.modules),
+    "    eval(\"var global = this\");",
+    "  var "+this._sandbox.require,
+    def("process", "process", this._sandbox.modules),
+    def("Buffer", "buffer", this._sandbox.modules),
     "  return ((() => {",
     "    let module = {exports:{}};",
     "    let exports = module.exports;",
