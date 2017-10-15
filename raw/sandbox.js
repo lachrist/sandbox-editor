@@ -3,10 +3,12 @@ const Fs = require("fs");
 const Path = require("path");
 
 module.exports = (path, options, callback) => {
+  options = options || {};
+  options.basedir = String(options.basedir || Path.dirname(path));
   Fs.readFile(path, "utf8", (error, content) => {
     callback(error, {
       type: "raw",
-      path: "/"+Path.relative(options.basedir||Path.dirname(path), path),
+      path: "/"+Path.relative(options.basedir, path),
       content: content
     });
   });
