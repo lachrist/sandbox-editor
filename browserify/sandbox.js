@@ -8,12 +8,14 @@ const Stream = require("stream");
 module.exports = (path, options, callback) => {
   options = options || {};
   options.basedir = String(options.basedir || Path.dirname(path));
+  options.editor = options.editor || {};
   options.noprocess = Boolean(options.noprocess);
   options.nobuffer = Boolean(options.nobuffer);
   const sandbox = {
     type: "browserify",
     path: "/"+Path.relative(options.basedir, path),
-    modules: []
+    editor: options.editor,
+    modules: [],
   };
   Fs.readFile(path, "utf8", (error, content) => {
     if (error)

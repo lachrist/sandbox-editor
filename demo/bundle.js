@@ -28,6 +28,10 @@ module.exports = function () {
 module.exports = {
   "type": "browserify",
   "path": "/demo/foo.js",
+  "editor": {
+    "maxLines": 20,
+    "minLines": 10
+  },
   "modules": [
     "process",
     "buffer",
@@ -42,10 +46,7 @@ module.exports = {
 const SandboxEditor = require("../main.js");
 const FooSandbox = require("./foo-sandbox.js");
 const div = document.createElement("div");
-const editor = SandboxEditor(div, FooSandbox, {
-  minLines: 10,
-  maxLines: 20
-});
+const editor = SandboxEditor(div, FooSandbox);
 document.body.appendChild(div);
 const button = document.createElement("button");
 button.textContent = "Eval";
@@ -70,7 +71,7 @@ Getters.browserify = require("./browserify/getter.js");
 
 function getPath () { return this._sandbox.path }
 
-module.exports = (container, sandbox, options) => {
+module.exports = (container, sandbox) => {
   const editor = Brace.edit(container);
   editor.getPath = getPath;
   editor._sandbox = sandbox;
@@ -80,7 +81,7 @@ module.exports = (container, sandbox, options) => {
   editor.setTheme("ace/theme/monokai");
   editor.setValue(sandbox.content, 1);
   editor.getScript = Getters[sandbox.type];
-  editor.setOptions(options || {});
+  editor.setOptions(sandbox.editor);
   return editor;
 };
 

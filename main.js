@@ -11,7 +11,7 @@ Getters.browserify = require("./browserify/getter.js");
 
 function getPath () { return this._sandbox.path }
 
-module.exports = (container, sandbox, options) => {
+module.exports = (container, sandbox) => {
   const editor = Brace.edit(container);
   editor.getPath = getPath;
   editor._sandbox = sandbox;
@@ -21,6 +21,6 @@ module.exports = (container, sandbox, options) => {
   editor.setTheme("ace/theme/monokai");
   editor.setValue(sandbox.content, 1);
   editor.getScript = Getters[sandbox.type];
-  editor.setOptions(options || {});
+  editor.setOptions(sandbox.editor);
   return editor;
 };

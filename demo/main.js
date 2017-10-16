@@ -1,10 +1,7 @@
 const SandboxEditor = require("../main.js");
 const FooSandbox = require("./foo-sandbox.js");
 const div = document.createElement("div");
-const editor = SandboxEditor(div, FooSandbox, {
-  minLines: 10,
-  maxLines: 20
-});
+const editor = SandboxEditor(div, FooSandbox);
 document.body.appendChild(div);
 const button = document.createElement("button");
 button.textContent = "Eval";

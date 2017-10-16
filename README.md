@@ -36,6 +36,7 @@ Note that `require("process")` and `require("buffer")` are always available and 
     * `path :: string`
     * `options :: object`
       * `basedir :: string`
+      * `editor :: ace.c9.editor.Options`
     * `callback(error, sandbox)`
       * `error :: Error`
       * `sandbox :: sandbox-editor.RawSandbox`
@@ -43,6 +44,7 @@ Note that `require("process")` and `require("buffer")` are always available and 
     * `path :: string`
     * `options :: object`
       * `basedir :: string`
+      * `editor :: ace.c9.editor.Options`
       * `noprocess :: boolean`
       * `nobuffer :: boolean`
     * `callback(error, sandbox)`
