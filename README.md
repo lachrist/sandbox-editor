@@ -49,10 +49,11 @@ Note that `require("process")` and `require("buffer")` are always available and 
       * `error :: Error`
       * `sandbox :: sandbox-editor.BrowserifySandbox`
 
-## `editor = require("sandbox-editor")(container, sandbox)`
+## `editor = require("sandbox-editor")(container, sandbox, options)`
 
 * `container :: dom.Element`
 * `sandbox :: sandbox-editor.RawSandbox | sandbox-editor.BrowserifySandbox`
+* `options :: ace.c9.Editor.Options`
 * `editor :: brace.Editor`
   * `path = getPath()`
     * `path :: string`

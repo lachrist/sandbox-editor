@@ -11,7 +11,7 @@ Getters.browserify = require("./browserify/getter.js");
 
 function getPath () { return this._sandbox.path }
 
-module.exports = (container, sandbox) => {
+module.exports = (container, sandbox, options) => {
   const editor = Brace.edit(container);
   editor.getPath = getPath;
   editor._sandbox = sandbox;
@@ -20,7 +20,8 @@ module.exports = (container, sandbox) => {
   editor.getSession().setMode("ace/mode/javascript");
   editor.setTheme("ace/theme/monokai");
   editor.setValue(sandbox.content, 1);
-  editor.setOption("maxLines", sandbox.content.split("\n").length);
+  editor.setOption("maxLines", Max(sandbox.content.split("\n").length), 9);
   editor.getScript = Getters[sandbox.type];
+  editor.setOptions(options || {});
   return editor;
 };
