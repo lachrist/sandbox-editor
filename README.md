@@ -1,7 +1,7 @@
 # commonjs-editor
 
 Edit JS files within different environments into browsers.
-Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/e848290b/demo/index.html).
+Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/21daebad/demo/index.html).
 
 ```
 sandbox-editor --path script.js [--type raw|browserify] [--basedir .] [--nobuffer] [--noprocess] > sandbox.js
