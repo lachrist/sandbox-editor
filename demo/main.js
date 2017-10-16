@@ -1,11 +1,14 @@
-var SandboxEditor = require("../main.js");
-var FooSandbox = require("./foo-sandbox.js");
-var div = document.createElement("div");
-var editor = SandboxEditor(div, FooSandbox);
+const SandboxEditor = require("../main.js");
+const FooSandbox = require("./foo-sandbox.js");
+const div = document.createElement("div");
+const editor = SandboxEditor(div, FooSandbox, {
+  minLines: 10,
+  maxLines: 20
+});
 document.body.appendChild(div);
-var button = document.createElement("button");
+const button = document.createElement("button");
 button.textContent = "Eval";
-button.addEventListener("click", function () {
+button.addEventListener("click", () => {
   const global = "sandbox-global";
   const process = "sandbox-process";
   const Buffer = "sandbox-buffer";

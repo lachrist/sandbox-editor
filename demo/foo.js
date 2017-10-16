@@ -1,6 +1,6 @@
 console.log("foo");
-var Bar = require("./bar.js");
-var Qux = require("qux");
+const Bar = require("./bar.js");
+const Qux = require("qux");
 exports.Bar = Bar;
 exports.Qux = Qux;
 exports.global = global;

@@ -20,7 +20,6 @@ module.exports = (container, sandbox, options) => {
   editor.getSession().setMode("ace/mode/javascript");
   editor.setTheme("ace/theme/monokai");
   editor.setValue(sandbox.content, 1);
-  editor.setOption("maxLines", Max(sandbox.content.split("\n").length), 9);
   editor.getScript = Getters[sandbox.type];
   editor.setOptions(options || {});
   return editor;
