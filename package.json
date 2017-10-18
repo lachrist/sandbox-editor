@@ -1,7 +1,7 @@
 {
   "name": "sandbox-editor",
   "description": "Edit JS files within different environments into browsers",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "author": {
     "name": "Laurent Christophe",
     "email": "lachrist@vub.ac.be"

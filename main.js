@@ -6,17 +6,17 @@ const GetScript = require("./get-script.js");
 
 require("brace/mode/javascript");
 
-function getPath () { return this._sandbox.path }
+function getSandbox () { return this._sandbox }
 
 module.exports = (container, sandbox) => {
   const editor = Brace.edit(container);
-  editor.getPath = getPath;
+  editor.getSandbox = getSandbox;
   editor._sandbox = sandbox;
   editor.$blockScrolling = Infinity;
   editor.setShowPrintMargin(false);
   editor.getSession().setMode("ace/mode/javascript");
-  editor.setTheme(Theme[sandbox.type]);
-  editor.getScript = GetScript[sandbox.type];
+  editor.setTheme(Theme[sandbox.type||"raw"]);
+  editor.getScript = GetScript[sandbox.type||"raw"];
   editor.setValue(sandbox.content, 1);
   const lines = Math.min(sandbox.content.split("\n").length, 20);
   editor.setOption("minLines", lines);

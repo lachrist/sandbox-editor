@@ -9,7 +9,7 @@ sandbox-editor [--type raw] --path foo.js [--basedir .] > foo-sandbox.js
 ```
 
 You can install a new environment by running [/install.js](/install.js) with a path to a directory which contain at least the files:
-* `sandbox.js`: exports a sandboxing function.
+* `bundle.js`: exports a bundling function.
 * `get-script.js`: exports a `getScript` method.
 * `theme.js`: declares an `ace` theme which you can copy from [here](https://github.com/ajaxorg/ace/tree/master/lib/ace/theme) and exports its name.
 
@@ -61,10 +61,10 @@ Note that `require("process")` and `require("buffer")` are always available and 
 ## `editor = require("sandbox-editor")(container, sandbox, options)`
 
 * `container :: dom.Element`
-* `sandbox :: sandbox-editor.RawSandbox | sandbox-editor.BrowserifySandbox`
+* `sandbox :: sandbox-editor.Sandbox`
 * `options :: ace.c9.Editor.Options`
 * `editor :: brace.Editor`
-  * `path = getPath()`
-    * `path :: string`
+  * `sandbox = getSandbox()`
+    * `sandbox :: sandbox-editor.Sandbox`
   * `script = getScript()`
     * `script :: string`
