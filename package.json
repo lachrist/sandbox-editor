@@ -1,6 +1,6 @@
 {
   "name": "sandbox-editor",
-  "description": "Edit JS files within different environments into browsers",
+  "description": "Edit js files within different sandbox types into the browser",
   "version": "0.0.14",
   "author": {
     "name": "Laurent Christophe",
