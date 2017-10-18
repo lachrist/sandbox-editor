@@ -1,13 +1,10 @@
 
 const Path = require("path");
-
 const Brace = require("brace");
-require("brace/mode/javascript");
-require("brace/theme/monokai");
+const Theme = require("./theme.js");
+const GetScript = require("./get-script.js");
 
-const Getters = {};
-Getters.raw = require("./raw/getter.js");
-Getters.browserify = require("./browserify/getter.js");
+require("brace/mode/javascript");
 
 function getPath () { return this._sandbox.path }
 
@@ -18,9 +15,12 @@ module.exports = (container, sandbox) => {
   editor.$blockScrolling = Infinity;
   editor.setShowPrintMargin(false);
   editor.getSession().setMode("ace/mode/javascript");
-  editor.setTheme("ace/theme/monokai");
+  editor.setTheme(Theme[sandbox.type]);
+  editor.getScript = GetScript[sandbox.type];
   editor.setValue(sandbox.content, 1);
-  editor.getScript = Getters[sandbox.type];
+  const lines = Math.min(sandbox.content.split("\n").length, 20);
+  editor.setOption("minLines", lines);
+  editor.setOption("maxLines", lines);
   editor.setOptions(sandbox.editor);
   return editor;
 };

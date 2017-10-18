@@ -1,5 +1,7 @@
 ```sh
-node ../bin.js --type browserify --path foo.js --basedir ../ --min-lines 10 --max-lines 20 --noprocess --nobuffer > foo-sandbox.js
+node ../bin.js --type raw        --path fac.js --basedir ../ > fac-sandbox.js
+node ../bin.js --type browserify --path foo.js --basedir ../ > foo-sandbox.js
 browserify main.js > bundle.js
+rm fac-sandbox.js
 rm foo-sandbox.js
 ```

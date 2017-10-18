@@ -1,3 +1,2 @@
-
-exports.raw = require("./raw/sandbox.js");
-exports.browserify = require("./browserify/sandbox.js");
+exports.browserify = require("./env/browserify/sandbox.js");
+exports.raw = require("./env/raw/sandbox.js");

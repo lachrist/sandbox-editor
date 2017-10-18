@@ -1,11 +1,17 @@
 # commonjs-editor
 
-Edit JS files within different environments into browsers.
+[npm module](https://www.npmjs.com/package/sandbox-editor) to edit js files within different environments into browsers.
 Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-editor/21daebad/demo/index.html).
+Command line interface:
 
 ```
-sandbox-editor --path script.js [--type raw|browserify] [--basedir .] [--nobuffer] [--noprocess] > sandbox.js
+sandbox-editor [--type raw] --path script.js [--basedir .] > sandbox.js
 ```
+
+You can install a new environment by running [/install.js](/install.js) with a path to a directory which contain at least the files:
+* `sandbox.js`: exports a sandboxing function.
+* `get-script.js`: exports a `getScript` method.
+* `theme.js`: declares an `ace` theme which you can copy from [here](https://github.com/ajaxorg/ace/tree/master/lib/ace/theme) and exports its name.
 
 In the BrowserifySandbox environment, the nodejs pseudo global variables are always available: `module`, `exports`, `require`, `__filename`, `__dirname`.
 `__filename` and `__dirname` are the (absolute) path of the current script relative to `options.basedir`.
