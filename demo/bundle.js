@@ -32,11 +32,12 @@ document.body.appendChild(button);
 const edit = (sandbox) => {
   const h2 = document.createElement("h2");
   const div = document.createElement("div");
+  div.style.height = "200px";
   h2.textContent = sandbox.path+" ["+sandbox.type+"]";
   document.body.appendChild(h2);
   document.body.appendChild(div);
   return SandboxEditor(div, sandbox);
-}
+};
 const editor1 = edit(FacSandbox);
 const editor2 = edit(FooSandbox);
 button.textContent = "Eval";
@@ -69,9 +70,9 @@ module.exports = (container, sandbox) => {
   editor.setTheme(Theme[sandbox.type||"raw"]);
   editor.getScript = GetScript[sandbox.type||"raw"];
   editor.setValue(sandbox.content, 1);
-  const lines = Math.min(sandbox.content.split("\n").length, 20);
-  editor.setOption("minLines", lines);
-  editor.setOption("maxLines", lines);
+  // const lines = Math.min(sandbox.content.split("\n").length, 20);
+  // editor.setOption("minLines", lines);
+  // editor.setOption("maxLines", lines);
   editor.setOptions(sandbox.editor);
   return editor;
 };

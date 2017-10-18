@@ -6,11 +6,12 @@ document.body.appendChild(button);
 const edit = (sandbox) => {
   const h2 = document.createElement("h2");
   const div = document.createElement("div");
+  div.style.height = "200px";
   h2.textContent = sandbox.path+" ["+sandbox.type+"]";
   document.body.appendChild(h2);
   document.body.appendChild(div);
   return SandboxEditor(div, sandbox);
-}
+};
 const editor1 = edit(FacSandbox);
 const editor2 = edit(FooSandbox);
 button.textContent = "Eval";

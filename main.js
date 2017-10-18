@@ -18,9 +18,6 @@ module.exports = (container, sandbox) => {
   editor.setTheme(Theme[sandbox.type||"raw"]);
   editor.getScript = GetScript[sandbox.type||"raw"];
   editor.setValue(sandbox.content, 1);
-  const lines = Math.min(sandbox.content.split("\n").length, 20);
-  editor.setOption("minLines", lines);
-  editor.setOption("maxLines", lines);
   editor.setOptions(sandbox.editor);
   return editor;
 };
