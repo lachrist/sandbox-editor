@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 const Minimist = require("minimist");
-const options = Minimist(process.argv.slice(2));
 const Sandbox = require("./sandbox.js");
+const options = Minimist(process.argv.slice(2));
 Sandbox[options.type||"raw"](options.path, {
-  basedir: options.basedir || process.cwd(),
-  editor: {},
-  nobuffer: options.nobuffer || false,
-  noprocess: options.noprocess || false
+  basedir: options.basedir || process.cwd()
 }, (error, sandbox) => {
   if (error)
     throw error;
