@@ -1,8 +1,8 @@
 
 const Path = require("path");
 const Brace = require("brace");
-const Theme = require("./theme.js");
-const GetScript = require("./get-script.js");
+const Theme = require("./sandbox/theme.js");
+const GetScript = require("./sandbox/get-script.js");
 
 require("brace/mode/javascript");
 
@@ -15,8 +15,8 @@ module.exports = (container, sandbox) => {
   editor.$blockScrolling = Infinity;
   editor.setShowPrintMargin(false);
   editor.getSession().setMode("ace/mode/javascript");
-  editor.setTheme(Theme[sandbox.type||"raw"]);
-  editor.getScript = GetScript[sandbox.type||"raw"];
+  editor.setTheme(Theme[sandbox.type]);
+  editor.getScript = GetScript[sandbox.type];
   editor.setValue(sandbox.content, 1);
   editor.setOptions(sandbox.editor);
   return editor;

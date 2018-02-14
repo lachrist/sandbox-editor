@@ -20,12 +20,6 @@ module.exports = (path, options, callback) => {
   Fs.readFile(path, "utf8", (error, content) => {
     if (error)
       return callback(error);
-    // const checkbuffer = (content) => {
-    //   if (sandbox.modules.indexOf("buffer") === -1 && content.search(/([^a-zA-Z0-9_$]|^)Buffer([^a-zA-Z0-9_$]|$)/) !== -1) {
-    //     browserify.require("buffer", "buffer");
-    //     sandbox.modules.push("buffer");
-    //   }
-    // }
     const browserify = Browserify({detectGlobals:false});
     const add = (module, expose) => {
       browserify.require(module, {expose:expose});
@@ -43,10 +37,6 @@ module.exports = (path, options, callback) => {
       shim("process", "process");
       shim("Buffer", "buffer");
     }) ());
-    // if (!options.nobuffer) {
-    //   browserify.require("buffer", {expose:"buffer"});
-    //   sandbox.modules.push("buffer");
-    // }
     browserify.transform((file) => {
       let content = "";
       const stream = new Stream.Transform({
@@ -57,7 +47,6 @@ module.exports = (path, options, callback) => {
           callback();
         },
         flush: (callback) => {
-          // checkbuffer(content);
           const filename = "/"+Path.relative(options.basedir, file);
           stream.push("\n}) ("+JSON.stringify(filename)+","+JSON.stringify(Path.dirname(filename))+"));");
           callback();
@@ -66,7 +55,6 @@ module.exports = (path, options, callback) => {
       stream.push("(((__filename, __dirname) => {\n");
       return stream;
     }, {global:true});
-    // checkbuffer(content);
     sandbox.content = content.replace(/([^a-zA-Z0-9_$]|^)require\s*\(\s*(("[^"]*")|('[^']*'))\s*\)/g, (match, p1, p2) => {
       let module = eval(p2);
       if (module[0] === ".")
@@ -78,12 +66,6 @@ module.exports = (path, options, callback) => {
         add(module, expose);
       return p1+"require("+JSON.stringify(expose)+")";
     });
-    // const comments = ["Available nodejs variables: module, exports, require, global, __filename, __dirname"+(modules.includes("buffer")?", Buffer":"")]
-    // if (sandbox.modules.length) {
-    //   comments.push("Available modules:");
-    //   sandbox.modules.forEach((module) => comments.push("  - "+module));
-    // }
-    // sandbox.content = comments.map((line) => "// "+line+"\n").join("")+sandbox.content;
     browserify.bundle((error, bundle) => {
       if (error)
         return callback(error);

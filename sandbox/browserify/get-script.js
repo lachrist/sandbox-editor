@@ -1,5 +1,5 @@
 const Path = require("path");
-const def = (variable, expose, modules) => [ 
+const define = (variable, expose, modules) => [ 
   "  if (typeof "+variable+" === \"undefined\")",
   "    eval(\"var "+variable+" = "+(modules.includes("_"+expose)?"require('_"+expose+"')":"{}")+"\");",
   "  require(\""+expose+"\");"
@@ -10,8 +10,8 @@ module.exports = function () {
     "  if (typeof global === \"undefined\")",
     "    eval(\"var global = this\");",
     "  var "+this._sandbox.require,
-    def("process", "process", this._sandbox.modules),
-    def("Buffer", "buffer", this._sandbox.modules),
+    define("process", "process", this._sandbox.modules),
+    define("Buffer", "buffer", this._sandbox.modules),
     "  return ((() => {",
     "    let module = {exports:{}};",
     "    let exports = module.exports;",
