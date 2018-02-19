@@ -7,7 +7,7 @@ const Stream = require("stream");
 
 module.exports = (path, options, callback) => {
   options = options || {};
-  options.basedir = String(options.basedir || Path.dirname(path));
+  options.basedir = String(options.basedir || process.cwd());
   options.editor = options.editor || {};
   options.noprocess = Boolean(options.noprocess);
   options.nobuffer = Boolean(options.nobuffer);

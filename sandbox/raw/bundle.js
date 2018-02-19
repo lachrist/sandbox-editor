@@ -4,7 +4,7 @@ const Path = require("path");
 
 module.exports = (path, options, callback) => {
   options = options || {};
-  options.basedir = String(options.basedir || Path.dirname(path));
+  options.basedir = String(options.basedir || process.cwd());
   options.editor = options.editor || {};
   Fs.readFile(path, "utf8", (error, content) => {
     callback(error, {
