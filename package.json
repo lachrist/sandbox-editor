@@ -1,7 +1,7 @@
 {
   "name": "sandbox-editor",
   "description": "Edit JS file in the browser and execute them inside a sandbox environment",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "author": {
     "name": "Laurent Christophe",
     "email": "lachrist@vub.ac.be"
@@ -18,9 +18,9 @@
     "Cloud9"
   ],
   "dependencies": {
-    "brace": "0.11.0",
-    "resolve": "1.5.0",
-    "browserify": "16.1.0",
-    "minimist": "1.2.0"
+    "brace": "^0.11.1",
+    "browserify": "^16.2.3",
+    "minimist": "^1.2.0",
+    "resolve": "^1.9.0"
   }
 }
